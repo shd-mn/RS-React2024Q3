@@ -1,0 +1,58 @@
+.hero {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.img-box {
+  display: flex;
+  height: 16rem;
+  margin-bottom: 3rem;
+}
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-style: none;
+}
+
+.form {
+  width: 40%;
+  display: flex;
+}
+.input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background: rgb(214, 214, 214);
+}
+
+.btn {
+  padding: 1rem;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background: gray;
+  color: white;
+  transition: all 0.2s;
+  &:hover {
+    background: #494949;
+  }
+}
+
+@media screen and (max-width: 62em) {
+  .form {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 35em) {
+  .form {
+    width: 100%;
+  }
+}

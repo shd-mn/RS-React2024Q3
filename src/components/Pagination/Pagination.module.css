@@ -1,0 +1,61 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: white;
+  aspect-ratio: 1/1;
+  background: gray;
+  transition: all 0.2s;
+  &:hover {
+    background: #202327;
+  }
+  &:disabled {
+    background: #2d3136;
+    color: gray;
+    cursor: auto;
+  }
+}
+
+.active {
+  background: #1c1e22;
+  &:disabled {
+    color: white;
+    background: #1c1e22;
+  }
+}
+
+.prev,
+.next {
+  background: #1d1f22;
+}
+
+@media screen and (max-width: 62em) {
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+@media screen and (max-width: 11em) {
+  .pagination {
+    gap: 5px;
+  }
+  .btn {
+    font-size: 1.4rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
