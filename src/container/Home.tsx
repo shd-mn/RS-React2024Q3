@@ -1,113 +1,98 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { baseUrl } from '../constants';
 import SearchForm from '../components/Search/SearchForm';
 import Cards from '../components/Cards';
-import { PeopleType } from '../types/peopleType';
+import type { PeopleType } from '../types/peopleType';
 import styles from './Home.module.css';
-interface HomeState {
-  query: string;
-  data: PeopleType | null;
-  currentPage: number;
-  isLoading: boolean;
-  error: null | Error;
-  isError: boolean;
-}
-class Home extends Component<object, HomeState> {
-  state = {
-    query: localStorage.getItem('query') ?? '',
-    data: null,
-    currentPage: 1,
-    isLoading: true,
-    error: null,
-    isError: false,
-  };
+import Loading from '../components/Loading';
 
-  fetchData = (page?: number) => {
-    this.setState({ isLoading: true });
-    const { query, currentPage } = this.state;
-    const searchQuery = query ? `?search=${query}&page=${page ?? currentPage}` : `?page=${page ?? currentPage}`;
-    const fetchUrl = `${baseUrl}${searchQuery}`;
-    fetch(fetchUrl)
-      .then((res) => res.json())
-      .then((data: PeopleType) => {
-        if (data && data.results.length > 0) {
-          this.setState({
-            data,
-            currentPage: page ?? currentPage,
-            isLoading: false,
-          });
-          localStorage.setItem('query', this.state.query);
-        } else {
-          this.setState({
-            data: null,
-            currentPage: 1,
-            isLoading: false,
-          });
+function Home() {
+  const [query, setQuery] = useState(localStorage.getItem('query') ?? '');
+  const [people, setPeople] = useState<PeopleType | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<null | string>(null);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    async function fetchData(): Promise<void> {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const searchQuery = query ? `?search=${query}&page=${currentPage}` : `?page=${currentPage}`;
+        const fetchUrl = `${baseUrl}${searchQuery}`;
+        const response = await fetch(fetchUrl);
+
+        if (!response.ok) {
+          setIsError(true);
+          throw new Error(`Unable to Fetch Data, Please check URL or Network connectivity!!`);
         }
-      })
-      .catch((error: Error) => {
-        console.error(error);
-        this.setState({ error, isLoading: false });
-      });
-  };
 
-  componentDidMount() {
-    this.fetchData();
-  }
+        const data = (await response.json()) as PeopleType;
 
-  componentDidUpdate(_: object, prevState: HomeState) {
-    if (prevState.currentPage !== this.state.currentPage) {
-      this.fetchData();
+        if (data && data.results.length > 0) {
+          setPeople(data);
+        } else {
+          setPeople(null);
+        }
+      } catch (err) {
+        console.error(err);
+        setError((err as Error).message);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  }
 
-  handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ query: e.target.value.trim() });
-  };
+    void fetchData();
+  }, [currentPage, query]);
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, value: string) => {
     e.preventDefault();
-    this.fetchData(1);
+    setCurrentPage(1);
+    setQuery(value);
+    localStorage.setItem('query', value);
   };
 
-  handlePage = (page: number) => {
-    this.setState({ currentPage: page });
+  const handlePage = (page: number) => {
+    setCurrentPage(page);
   };
 
-  simulateError = () => {
-    this.setState({ isError: true });
+  const simulateError = () => {
+    setIsError(true);
   };
 
-  render() {
-    const { query, data, currentPage, isLoading, isError } = this.state;
-    return (
-      <>
-        <header className={styles.header}>
-          <ErrorBoundary fallback="Something went wrong with the search.">
-            <SearchForm query={query} handleSearch={this.handleSearch} handleSubmit={this.handleSubmit} />
-          </ErrorBoundary>
-        </header>
+  return (
+    <>
+      <header className={styles.header}>
+        <ErrorBoundary fallback="Something went wrong with the search.">
+          <SearchForm query={query} handleSubmit={handleSubmit} />
+        </ErrorBoundary>
+      </header>
 
-        <main className={styles.main}>
-          <ErrorBoundary fallback="Something went wrong with the results.">
-            {data ? (
-              <Cards
-                data={data}
-                currentPage={currentPage}
-                isError={isError}
-                isLoading={isLoading}
-                handlePage={this.handlePage}
-                simulateError={this.simulateError}
-              />
-            ) : (
-              !isLoading && <p style={{ color: 'white', textAlign: 'center' }}>No results found</p>
-            )}
-          </ErrorBoundary>
-        </main>
-      </>
-    );
-  }
+      <main className={styles.main}>
+        <ErrorBoundary fallback="Something went wrong with the results.">
+          {isError ? (
+            <p style={{ color: 'red', textAlign: 'center' }}>An error occurred: {error}</p>
+          ) : isLoading ? (
+            <Loading />
+          ) : people ? (
+            <Cards
+              data={people}
+              currentPage={currentPage}
+              isError={isError}
+              isLoading={isLoading}
+              handlePage={handlePage}
+              simulateError={simulateError}
+            />
+          ) : (
+            <p style={{ color: 'white', textAlign: 'center' }}>No results found</p>
+          )}
+        </ErrorBoundary>
+      </main>
+    </>
+  );
 }
 
 export default Home;

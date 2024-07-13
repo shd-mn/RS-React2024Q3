@@ -1,18 +1,17 @@
-import { Component } from 'react';
 import styles from './ProfileCard.module.css';
 
-interface Props {
+interface PropTypes {
   infoText: string;
   info: string;
 }
 
-export default class CardItem extends Component<Props> {
-  render() {
-    return (
-      <p className={styles['card-item']}>
-        <span>{this.props.infoText}</span>
-        {this.props.info}
-      </p>
-    );
-  }
+function CardItem({ infoText, info }: PropTypes) {
+  return (
+    <p className={styles['card-item']}>
+      <span>{infoText}</span>
+      {info}
+    </p>
+  );
 }
+
+export default CardItem;

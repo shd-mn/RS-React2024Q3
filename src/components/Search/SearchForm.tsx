@@ -1,38 +1,39 @@
-import { ChangeEvent, Component, FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import logo from '/logo.webp';
 import styles from './SearchForm.module.css';
-interface Props {
+
+interface PropTypes {
   query: string;
-  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>, value: string) => void;
 }
+function SearchForm({ query, handleSubmit }: PropTypes) {
+  const [value, setValue] = useState(query);
 
-export default class SearchForm extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
 
-  render() {
-    return (
-      <div className="container">
-        <div className={styles.hero}>
-          <div className={styles['img-box']}>
-            <img className={styles.img} src={logo} alt="Star Wars Logo" />
-          </div>
-          <form className={styles.form} onSubmit={this.props.handleSubmit}>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="Search Star Wars character"
-              onChange={this.props.handleSearch}
-              value={this.props.query}
-            />
-            <button type="submit" className={styles.btn}>
-              Search
-            </button>
-          </form>
+  return (
+    <div className="container">
+      <div className={styles.hero}>
+        <div className={styles['img-box']}>
+          <img className={styles.img} src={logo} alt="Star Wars Logo" />
         </div>
+        <form className={styles.form} onSubmit={(e) => handleSubmit(e, value)}>
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Search Star Wars character"
+            onChange={handleSearch}
+            value={value}
+          />
+          <button type="submit" className={styles.btn}>
+            Search
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default SearchForm;
