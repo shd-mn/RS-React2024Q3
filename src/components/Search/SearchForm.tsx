@@ -1,16 +1,22 @@
-import { FormEvent, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import logo from '/logo.webp';
 import styles from './SearchForm.module.css';
 
 interface PropTypes {
-  query: string;
-  handleSubmit: (e: FormEvent<HTMLFormElement>, value: string) => void;
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
 }
-function SearchForm({ query, handleSubmit }: PropTypes) {
-  const [value, setValue] = useState(query);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+function SearchForm({ search, setSearch }: PropTypes) {
+  const [value, setValue] = useState(search);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearch(value.trim());
   };
 
   return (
@@ -19,12 +25,12 @@ function SearchForm({ query, handleSubmit }: PropTypes) {
         <div className={styles['img-box']}>
           <img className={styles.img} src={logo} alt="Star Wars Logo" />
         </div>
-        <form className={styles.form} onSubmit={(e) => handleSubmit(e, value)}>
+        <form className={styles.form} onSubmit={onSubmit}>
           <input
             type="text"
             className={styles.input}
             placeholder="Search Star Wars character"
-            onChange={handleSearch}
+            onChange={onChange}
             value={value}
           />
           <button type="submit" className={styles.btn}>
