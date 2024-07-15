@@ -1,16 +1,26 @@
+import { useSearchParams } from 'react-router-dom';
 import type { PersonType } from '../../types/peopleType';
 
 import CardItem from './CardItem';
 import styles from './ProfileCard.module.css';
+import { findPlanetId } from '../../utils/findPlanetId';
 
 interface PropTyes {
   person: PersonType;
 }
 
 function PeopleCard({ person }: PropTyes) {
-  const { name, height, mass, birth_year, gender } = person;
+  const { name, height, mass, birth_year, gender, homeworld } = person;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page') ?? '1';
+  const detail = findPlanetId(homeworld);
+
+  const handlePage = () => {
+    setSearchParams({ page: page, details: detail });
+  };
+
   return (
-    <article className={styles.card}>
+    <button className={styles.card} onClick={handlePage}>
       <header className={styles.header}>
         <h3>{name}</h3>
       </header>
@@ -20,7 +30,7 @@ function PeopleCard({ person }: PropTyes) {
         <CardItem infoText="gender :" info={gender} />
         <CardItem infoText="birth year :" info={birth_year} />
       </div>
-    </article>
+    </button>
   );
 }
 
