@@ -23,9 +23,13 @@ body {
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 110rem;
   padding: 0 3.2rem;
   margin: 0 auto;
+}
+
+a{
+  text-decoration: none;
 }
 
 button {
