@@ -1,21 +1,24 @@
-import { Outlet, useSearchParams } from 'react-router-dom';
-import Cards from '../components/Cards';
-import styles from './Home.module.css';
 import useLocalStorage from '../hooks/useLocalStorage';
 import SearchForm from '../components/Search/SearchForm';
+import ErrorProneComponent from '../components/ErrorBoundary/ErrorProneComponent';
+import SimulateError from '../components/ErrorBoundary/SimulateError';
+import Content from '../components/Content';
+import styles from './Home.module.css';
 
 function Home() {
   const [search, setSearch] = useLocalStorage('searchParam');
-  const [searchParams] = useSearchParams();
-  const detailsParam = searchParams.get('details');
+
   return (
     <>
       <header className={styles.header}>
         <SearchForm search={search} setSearch={setSearch} />
+        <SimulateError>
+          <ErrorProneComponent />
+        </SimulateError>
       </header>
+
       <main className={styles.main}>
-        <Cards search={search} />
-        {detailsParam && <Outlet />}
+        <Content search={search} />
       </main>
     </>
   );

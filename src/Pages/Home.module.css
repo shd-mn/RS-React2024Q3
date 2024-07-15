@@ -2,12 +2,13 @@
   width: 100%;
   padding: 4rem 0;
   background: #1c1e22;
-}
-
-.main {
-  height: 100%;
-  padding: 4rem 0;
-  padding-top: 1rem;
   position: relative;
 }
 
+.main {
+  max-width: 140rem;
+  margin: 0 auto;
+  padding: 4rem 3.2rem;
+  padding-top: 1rem;
+  position: relative;
+}
