@@ -1,17 +1,16 @@
 import styles from './Pagination.module.css';
 import PageBtn from './PageBtn';
 import { useSearchParams } from 'react-router-dom';
+import { createPageNums } from '../../utils/createPageNums';
 
 interface PropTypes {
   totalItems: number;
 }
 
 function Pagination({ totalItems }: PropTypes) {
-  const totalPages = Math.ceil(totalItems / 10);
+  const { totalPages, pages } = createPageNums(totalItems);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') ?? '1', 10);
-
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const handlePage = (num: number) => {
     setSearchParams({ page: `${num}` });
