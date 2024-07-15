@@ -1,16 +1,18 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './Details.module.css';
 import useFetch from '../../hooks/useFetch';
 import { baseUrl } from '../../constants';
 import Loading from '../Loading';
-import { PlanetType } from '../../types/planetType';
-import CardItem from '../Cards/CardItem';
+import CardInfo from '../Card/CardInfo';
+
+import type { PersonType } from '../../types/peopleType';
+import styles from './Details.module.css';
+
 function Details() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const planetId = searchParams.get('details');
-  const { data, isLoading } = useFetch<PlanetType>(`${baseUrl}/planets/${planetId}`);
+  const detailsParam = searchParams.get('details');
+  const { data, isLoading } = useFetch<PersonType>(`${baseUrl}/people/${detailsParam}`);
 
   const handleCloseDetails = () => {
     navigate(`?page=${searchParams.get('page')}`);
@@ -25,23 +27,25 @@ function Details() {
   }
 
   if (data) {
-    const { name, diameter, gravity, climate, terrain, population } = data;
+    const { name, height, mass, birth_year, gender, skin_color, eye_color, hair_color } = data;
 
     return (
       <aside className={styles.details}>
         <header className={styles.header}>
-          <h3>Homeworld</h3>
+          <h3>Details</h3>
           <button className={styles.btn} onClick={handleCloseDetails}>
             close
           </button>
         </header>
         <ul className={styles.content}>
-          <CardItem infoText="name: " info={name} />
-          <CardItem infoText="population: " info={population} />
-          <CardItem infoText="climate: " info={climate} />
-          <CardItem infoText="terrain: " info={terrain} />
-          <CardItem infoText="gravity: " info={gravity} />
-          <CardItem infoText="diameter: " info={diameter} />
+          <CardInfo infoText="name: " info={name} />
+          <CardInfo infoText="height :" info={`${height} cm`} />
+          <CardInfo infoText="mass :" info={`${mass} kg`} />
+          <CardInfo infoText="gender :" info={gender} />
+          <CardInfo infoText="birth year :" info={birth_year} />
+          <CardInfo infoText="skin color :" info={skin_color} />
+          <CardInfo infoText="eye color :" info={eye_color} />
+          <CardInfo infoText="haircolor :" info={hair_color} />
         </ul>
       </aside>
     );
