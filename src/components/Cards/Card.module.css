@@ -1,9 +1,14 @@
 .cards {
   display: grid;
+  flex: 1;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
+  position: relative;
 }
+
+
 
 .error-btn {
   margin-bottom: 10px;
@@ -11,6 +16,8 @@
   padding: 5px;
   background-color: #af4848;
 }
+
+
 
 @media screen and (max-width: 62em) {
   .cards {

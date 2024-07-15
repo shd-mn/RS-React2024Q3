@@ -1,37 +1,53 @@
-import type { PeopleType } from '../../types/peopleType';
-import Pagination from '../Pagination';
+import { useSearchParams } from 'react-router-dom';
 import PeopleCard from './PeopleCard';
 import Loading from '../Loading';
-import ErrorProneComponent from '../ErrorBoundary/ErrorProneComponent';
-import styles from './Card.module.css';
+import Pagination from '../Pagination';
 
-interface CardProps {
-  data: PeopleType;
-  currentPage: number;
-  isError: boolean;
-  isLoading: boolean;
-  handlePage: (page: number) => void;
-  simulateError: () => void;
+import type { PeopleType } from '../../types/peopleType';
+import { baseUrl } from '../../constants';
+import useFetch from '../../hooks/useFetch';
+import styles from './Card.module.css';
+import { useState } from 'react';
+import ErrorProneComponent from '../ErrorBoundary/ErrorProneComponent';
+
+interface PropTypes {
+  search?: string;
 }
 
-function Cards({ data, currentPage, isError, isLoading, handlePage, simulateError }: CardProps) {
-  const { count, results: people } = data;
+function Cards({ search }: PropTypes) {
+  const [searchParams] = useSearchParams();
+  const [isError, setIsError] = useState(false);
+  const page = searchParams.get('page') ?? '1';
+  const searchQuery = search ? `?search=${search}&page=${page}` : `?page=${page}`;
+  const { data, isLoading } = useFetch<PeopleType>(`${baseUrl}/people/${searchQuery}`);
+
+  const simulateError = () => {
+    setIsError(true);
+  };
 
   if (isLoading) {
     return <Loading />;
   }
-  return (
-    <div className="container">
-      <button className={styles['error-btn']} onClick={simulateError}>
-        Throw Error
-      </button>
-      <div className={styles.cards}>
-        {people.length > 0 && people.map((person, idx) => <PeopleCard person={person} key={idx} />)}
+  if (data) {
+    return (
+      <div className="container">
+        <div className={styles.cards}>
+          {data.results.map((person, idx) => (
+            <PeopleCard person={person} key={idx} />
+          ))}
+        </div>
+
+        <>
+          <button className={styles['error-btn']} onClick={simulateError}>
+            Throw Error
+          </button>
+          {isError && <ErrorProneComponent />}
+        </>
+
+        <Pagination totalItems={data.count} />
       </div>
-      {isError && <ErrorProneComponent />}
-      <Pagination currentPage={currentPage} totalItems={count} handlePage={handlePage} />
-    </div>
-  );
+    );
+  }
 }
 
 export default Cards;
