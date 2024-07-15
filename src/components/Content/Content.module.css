@@ -1,0 +1,44 @@
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+.cards {
+  display: grid;
+  width: 100%;
+  flex: 4;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.not-found {
+  padding-top: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 62em) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 59em) {
+  .content {
+    flex: 2;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 46em) {
+  .content {
+    flex: 1;
+  }
+}
