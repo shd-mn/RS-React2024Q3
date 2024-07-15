@@ -22,7 +22,6 @@ function useFetch<T>(url: string): UseFetchState<T> {
           throw new Error(`Unable to Fetch Data, Please check URL or Network connectivity!!`);
         }
         const data: T = (await response.json()) as T;
-        console.log('data', data);
         setData(data);
       } catch (err) {
         console.error(err);

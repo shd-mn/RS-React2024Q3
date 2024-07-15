@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-function useLocalStorage(key: string): [string, React.Dispatch<React.SetStateAction<string>>] {
+function useLocalStorage(key: string): [string, Dispatch<SetStateAction<string>>] {
   const [query, setQuery] = useState<string>(localStorage.getItem(key) ?? '');
 
   useEffect(() => {

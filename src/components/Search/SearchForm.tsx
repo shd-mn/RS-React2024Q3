@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import logo from '/logo.webp';
 import styles from './SearchForm.module.css';
+import { useSearchParams } from 'react-router-dom';
 
 interface PropTypes {
   search: string;
@@ -9,7 +10,7 @@ interface PropTypes {
 
 function SearchForm({ search, setSearch }: PropTypes) {
   const [value, setValue] = useState(search);
-
+  const [, setSearchParams] = useSearchParams();
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -17,6 +18,7 @@ function SearchForm({ search, setSearch }: PropTypes) {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearch(value.trim());
+    setSearchParams({ page: '1' });
   };
 
   return (
