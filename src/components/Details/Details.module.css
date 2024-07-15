@@ -1,0 +1,27 @@
+.details {
+  position: absolute;
+  min-height: 30rem;
+  min-width: 30rem;
+  background: #7d818b;
+  
+  top: 1rem;
+  right: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem;
+  background: #1c1e22;
+
+  h3{
+    color: #ffe300;
+  }
+}
+
+.btn {
+  padding: 5px;
+}
