@@ -1,4 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
+import styles from './ErrorBoundary.module.css';
 
 interface Props {
   fallback: string;
@@ -29,7 +30,9 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="container">
-          <h3 style={{ color: 'white', textAlign: 'center' }}>{this.props.fallback || 'Something went wrong.'}</h3>
+          <div className={styles.content}>
+            <h3 className={styles.text}>{this.props.fallback || 'Something went wrong.'}</h3>
+          </div>
         </div>
       );
     }
