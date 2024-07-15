@@ -3,7 +3,7 @@
 }
 
 .header {
-  padding: 2rem;
+  padding: 1.6rem;
   background-color: #1c1e22;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -11,7 +11,7 @@
 }
 
 .card-body {
-  padding: 2rem;
+  padding: 1.4rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: #3b3e44;
