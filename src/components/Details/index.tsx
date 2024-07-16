@@ -12,7 +12,7 @@ function Details() {
   const navigate = useNavigate();
 
   const detailsParam = searchParams.get('details');
-  const { data, isLoading } = useFetch<PersonType>(`${baseUrl}/people/${detailsParam}`);
+  const { data, isLoading, error } = useFetch<PersonType>(`${baseUrl}/people/${detailsParam}`);
 
   const handleCloseDetails = () => {
     navigate(`?page=${searchParams.get('page')}`);
@@ -22,6 +22,14 @@ function Details() {
     return (
       <aside className={styles.details}>
         <Loading />
+      </aside>
+    );
+  }
+
+  if (error) {
+    return (
+      <aside className={styles.details}>
+        <p className={styles.error}>{error}</p>;
       </aside>
     );
   }

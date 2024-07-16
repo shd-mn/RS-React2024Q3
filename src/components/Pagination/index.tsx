@@ -10,7 +10,8 @@ interface PropTypes {
 function Pagination({ totalItems }: PropTypes) {
   const { totalPages, pages } = createPageNums(totalItems);
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = parseInt(searchParams.get('page') ?? '1', 10);
+  const page = searchParams.get('page') ?? '1';
+  const currentPage = parseInt(page, 10);
 
   const handlePage = (num: number) => {
     setSearchParams({ page: `${num}` });

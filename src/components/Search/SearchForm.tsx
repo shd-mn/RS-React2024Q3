@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import logo from '/logo.webp';
 import styles from './SearchForm.module.css';
 import { useSearchParams } from 'react-router-dom';
@@ -11,7 +11,7 @@ interface PropTypes {
 function SearchForm({ search, setSearch }: PropTypes) {
   const [value, setValue] = useState(search);
   const [, setSearchParams] = useSearchParams();
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 

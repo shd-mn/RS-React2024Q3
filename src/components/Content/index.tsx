@@ -17,11 +17,16 @@ function Content({ search }: PropTypes) {
   const detailsParam = searchParams.get('details');
   const page = searchParams.get('page') ?? '1';
   const searchQuery = search ? `?search=${search}&page=${page}` : `?page=${page}`;
-  const { data, isLoading } = useFetch<PeopleType>(`${baseUrl}/people/${searchQuery}`);
+  const { data, isLoading, error } = useFetch<PeopleType>(`${baseUrl}/people/${searchQuery}`);
 
   if (isLoading) {
     return <Loading />;
   }
+
+  if (error) {
+    return <p className={styles.error}>{error}</p>;
+  }
+
   if (data && data.results.length > 0) {
     return (
       <>
