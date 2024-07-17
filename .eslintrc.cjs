@@ -5,8 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
     'eslint-config-prettier',
@@ -17,7 +16,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.app.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
     ecmaFeatures: {
       jsx: true,
@@ -32,7 +30,12 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     'react-compiler/react-compiler': 'error',
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
     'react/jsx-uses-react': 'error',
