@@ -16,16 +16,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
-  min-height: 100vh;
+
   font-weight: 400;
   background: #272b30;
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 110rem;
   padding: 0 3.2rem;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
 }
 
 button {
