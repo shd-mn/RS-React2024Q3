@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { findId } from './findId';
+import { findId } from '../utils/findId';
 
 describe('findId', () => {
   it('should return the correct ID from a valid URL', () => {

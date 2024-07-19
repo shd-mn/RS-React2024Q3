@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createPageNums } from './createPageNums';
+import { createPageNums } from '../utils/createPageNums';
 
 describe('createPageNums', () => {
   it('should return correct page numbers and total pages for totalItems divisible by 10', () => {
