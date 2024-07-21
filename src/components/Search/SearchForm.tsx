@@ -1,46 +1,42 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import logo from '/logo.webp';
-import styles from './SearchForm.module.css';
+import { FormEvent, useEffect, useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { setSearch } from '../../redux/features/mainSlice';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import { useSearchParams } from 'react-router-dom';
+import styles from './SearchForm.module.css';
 
-interface PropTypes {
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
-}
-
-function SearchForm({ search, setSearch }: PropTypes) {
-  const [value, setValue] = useState(search);
+function SearchForm() {
+  const [query, setQuery] = useLocalStorage('searchQuery');
+  const [value, setValue] = useState(query);
+  const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const name = value.trim().toLowerCase();
+    setQuery(name);
+    setSearchParams({ search: name, page: '1' });
+    dispatch(setSearch(name));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSearch(value.trim());
-    setSearchParams({ page: '1' });
-  };
+  useEffect(() => {
+    dispatch(setSearch(query));
+  }, [dispatch, query]);
 
   return (
-    <div className="container">
-      <div className={styles.hero}>
-        <div className={styles['img-box']}>
-          <img className={styles.img} src={logo} alt="Star Wars Logo" />
-        </div>
-        <form className={styles.form} onSubmit={onSubmit}>
-          <input
-            type="text"
-            className={styles.input}
-            placeholder="Search Star Wars character"
-            onChange={onChange}
-            value={value}
-          />
-          <button type="submit" className={styles.btn}>
-            Search
-          </button>
-        </form>
-      </div>
-    </div>
+    <form className={styles.form} onSubmit={onSubmit}>
+      <input
+        type="text"
+        className={styles.input}
+        placeholder="Search Star Wars character"
+        onChange={(e) => setValue(e.target.value)}
+        value={value}
+      />
+      <button type="submit" className={styles.btn}>
+        Search
+      </button>
+    </form>
   );
 }
 
