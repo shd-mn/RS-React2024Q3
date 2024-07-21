@@ -4,6 +4,9 @@ import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Details from './components/Details';
 import ErrorLayout from './components/ErrorBoundary/ErrorLayout';
+import ThemeProvider from './context/ThemeProvider';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +26,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
+  );
 }
 
 export default App;
