@@ -11,7 +11,18 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
-      exclude: ['**/.eslintrc.cjs', '**/main.tsx', '**/App.tsx', 'vite.config.ts', 'vitest.config.ts', 'dist'],
+      exclude: [
+        '**/.eslintrc.cjs',
+        'vite.config.ts',
+        'vitest.config.ts',
+        'dist',
+        '**/App.tsx',
+        '**/main.tsx',
+        '**/types',
+        '**/constants',
+        '**/redux',
+        '**/context',
+      ],
     },
   },
 });

@@ -1,14 +1,8 @@
-.container {
-  position: absolute;
-  top: 10%;
-  right: 10%;
-}
-
 .error-btn {
   margin-bottom: 10px;
   border-radius: 5px;
   padding: 1rem;
-  color: white;
-  background-color: #3b3e44;
+  color: var(--text-clr);
+  background: var(--error-btn-clr);
   margin: auto;
 }
