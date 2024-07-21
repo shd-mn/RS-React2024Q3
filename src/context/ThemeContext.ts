@@ -6,7 +6,7 @@ type ThemeContextType = {
 };
 
 const defaultContextValue = {
-  theme: 'light',
+  theme: 'dark',
   setTheme: () => {},
 };
 
