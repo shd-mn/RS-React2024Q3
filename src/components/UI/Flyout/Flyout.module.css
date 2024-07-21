@@ -1,0 +1,47 @@
+.flyout {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  bottom: 2rem;
+  right: -10rem;
+  border-radius: 5px;
+  padding: 2rem;
+  transition: all 0.2s;
+  color: var(--text-primary-clr);
+  background-color: var(--bg-header-clr);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1);
+}
+
+.show {
+  right: 4rem;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 5px;
+  border: none;
+  color: var(--text-clr);
+  background: var(--bg-body-clr);
+  border-radius: 5px;
+}
+.link {
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--text-clr);
+  background: var(--text-primary-clr);
+}
+.size {
+  transform: scale(1.02);
+}
