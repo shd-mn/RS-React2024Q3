@@ -1,24 +1,25 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
-import { baseUrl } from '../../constants';
 import Loading from '../Loading';
 import CardInfo from '../Card/CardInfo';
 
-import type { PersonType } from '../../types/peopleType';
 import styles from './Details.module.css';
+import { useGetCharacterQuery } from '../../redux/services/swapiApi';
 
 function Details() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const detailsParam = searchParams.get('details');
-  const { data, isLoading, error } = useFetch<PersonType>(`${baseUrl}/people/${detailsParam}`);
+  const detailsParam = searchParams.get('details')!;
+
+  const { data, error, isFetching } = useGetCharacterQuery({ id: detailsParam });
 
   const handleCloseDetails = () => {
-    navigate(`?page=${searchParams.get('page')}`);
+    const search = searchParams.get('search');
+    const page = searchParams.get('page');
+    navigate(`?search=${search}&page=${page}`);
   };
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <aside className={styles.details}>
         <Loading />
@@ -27,11 +28,14 @@ function Details() {
   }
 
   if (error) {
-    return (
-      <aside className={styles.details}>
-        <p className={styles.error}>{error}</p>;
-      </aside>
-    );
+    if ('status' in error) {
+      return (
+        <div className={styles['not-found']}>
+          An error has occurred: <span>{error.status}</span>
+        </div>
+      );
+    }
+    return <div className={styles['not-found']}>{error.message}</div>;
   }
 
   if (data) {
