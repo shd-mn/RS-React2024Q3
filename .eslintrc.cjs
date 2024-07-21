@@ -38,8 +38,9 @@ module.exports = {
     ],
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
+    'react/jsx-uses-react': 'off',
+    'react/jsx-uses-vars': 'off',
+    'react/react-in-jsx-scope': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
 };
