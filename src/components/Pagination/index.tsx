@@ -1,21 +1,26 @@
 import styles from './Pagination.module.css';
 import PageBtn from './PageBtn';
 import { useSearchParams } from 'react-router-dom';
-import { createPageNums } from '../../utils/createPageNums';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { useEffect } from 'react';
+import { setCurrentPage } from '../../redux/features/pageSlice';
 
-interface PropTypes {
-  totalItems: number;
-}
+function Pagination() {
+  const { name } = useSelector((state: RootState) => state.main);
+  const { currentPage, pages } = useSelector((state: RootState) => state.page);
+  const dispatch = useDispatch();
 
-function Pagination({ totalItems }: PropTypes) {
-  const { totalPages, pages } = createPageNums(totalItems);
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = searchParams.get('page') ?? '1';
-  const currentPage = parseInt(page, 10);
 
   const handlePage = (num: number) => {
-    setSearchParams({ page: `${num}` });
+    setSearchParams({ search: name, page: `${num}` });
   };
+
+  useEffect(() => {
+    const page = searchParams.get('page') ?? 1;
+    dispatch(setCurrentPage(+page));
+  }, [searchParams, dispatch]);
 
   return (
     <div className={styles.pagination}>
@@ -39,7 +44,7 @@ function Pagination({ totalItems }: PropTypes) {
       <PageBtn
         text="next"
         className={styles.next}
-        disabled={currentPage === totalPages}
+        disabled={currentPage === pages.length}
         onClick={() => handlePage(currentPage + 1)}
       />
     </div>
