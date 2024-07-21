@@ -1,24 +1,16 @@
-import useLocalStorage from '../hooks/useLocalStorage';
-import SearchForm from '../components/Search/SearchForm';
-import ErrorProneComponent from '../components/ErrorBoundary/ErrorProneComponent';
-import SimulateError from '../components/ErrorBoundary/SimulateError';
+import { useThemeContext } from '../context/ThemeContext';
+import Header from '../components/Header';
 import Content from '../components/Content';
 import styles from './Home.module.css';
 
 function Home() {
-  const [search, setSearch] = useLocalStorage('searchParam');
-
+  const { theme } = useThemeContext();
   return (
     <>
-      <header className={styles.header}>
-        <SearchForm search={search} setSearch={setSearch} />
-        <SimulateError>
-          <ErrorProneComponent />
-        </SimulateError>
-      </header>
+      <Header />
 
-      <main className={styles.main}>
-        <Content search={search} />
+      <main className={styles.main} data-theme={theme}>
+        <Content />
       </main>
     </>
   );
