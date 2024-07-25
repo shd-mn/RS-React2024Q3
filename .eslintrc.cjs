@@ -8,7 +8,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
-    'eslint-config-prettier',
     'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -21,7 +20,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['react', '@typescript-eslint', 'react-compiler', 'react-refresh', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'react-compiler', 'react-refresh'],
   settings: {
     react: {
       version: 'detect',
@@ -30,17 +29,15 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     'react-compiler/react-compiler': 'error',
+    'react/jsx-uses-react': 'off',
+    'react/jsx-uses-vars': 'off',
+    'react/react-in-jsx-scope': 'off',
     'prettier/prettier': [
       'error',
       {
         endOfLine: 'auto',
       },
     ],
-    'arrow-body-style': 'off',
-    'prefer-arrow-callback': 'off',
-    'react/jsx-uses-react': 'off',
-    'react/jsx-uses-vars': 'off',
-    'react/react-in-jsx-scope': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
 };
