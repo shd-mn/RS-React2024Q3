@@ -1,5 +1,4 @@
 /// <reference types="vitest" />
-/// <reference types="vite/client" />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -17,14 +16,12 @@ export default defineConfig({
         '**/.eslintrc.cjs',
         'vite.config.ts',
         'vitest.config.ts',
+        '**/vite-env.d.ts',
         'dist',
-        '**/App.tsx',
         '**/main.tsx',
         '**/types',
-        '**/constants',
-        '**/redux',
-        '**/context',
       ],
     },
+    css: false,
   },
 });

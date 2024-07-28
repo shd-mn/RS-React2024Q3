@@ -1,15 +1,15 @@
 import { describe, it, expect } from 'vitest';
 
-import { findSelectedPerson } from '../utils/findSelectedPerson';
-import { mockPeople } from './__mocks__/test-mock-data';
+import { findSelectedPerson } from '../../utils/findSelectedPerson';
+import { mockPeople } from '../mocks/mockData';
 
 describe('findSelectedPerson', () => {
   it('should return true if the person is found in the list', () => {
-    expect(findSelectedPerson(mockPeople, 'Luke Skywalker')).toBe(true);
+    expect(findSelectedPerson(mockPeople.results, 'Luke Skywalker')).toBe(true);
   });
 
   it('should return false if the person is not found in the list', () => {
-    expect(findSelectedPerson(mockPeople, 'Han Solo')).toBe(false);
+    expect(findSelectedPerson(mockPeople.results, 'Han Solo')).toBe(false);
   });
 
   it('should handle an empty list and return false', () => {
@@ -17,10 +17,10 @@ describe('findSelectedPerson', () => {
   });
 
   it('should be case-sensitive and return false if case does not match', () => {
-    expect(findSelectedPerson(mockPeople, 'luke skywalker')).toBe(false);
+    expect(findSelectedPerson(mockPeople.results, 'luke skywalker')).toBe(false);
   });
 
   it('should return false if the name is an empty string', () => {
-    expect(findSelectedPerson(mockPeople, '')).toBe(false);
+    expect(findSelectedPerson(mockPeople.results, '')).toBe(false);
   });
 });

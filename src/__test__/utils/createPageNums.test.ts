@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createPageNums } from '../utils/createPageNums';
+import { createPageNums } from '../../utils/createPageNums';
 
 describe('createPageNums', () => {
   it('should return an array with one page number for totalItems less than 10', () => {

@@ -1,7 +1,5 @@
-// ErrorBoundary.test.tsx
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import ErrorBoundary from '../components/ErrorBoundary';
+import ErrorBoundary from '../../components/ErrorBoundary';
 
 const ProblemChild = () => {
   throw new Error('Error thrown from problem child');
@@ -9,11 +7,13 @@ const ProblemChild = () => {
 
 describe('ErrorBoundary Component', () => {
   it('should catch errors and display the fallback UI', () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
     render(
       <ErrorBoundary fallback="Something went wrong!">
         <ProblemChild />
       </ErrorBoundary>,
     );
     expect(screen.getByText(/something went wrong!/i)).toBeInTheDocument();
+    spy.mockRestore();
   });
 });
