@@ -23,18 +23,6 @@
   --details-bg-clr: #6c6f79;
   --details-header-clr: #45484d;
 }
-.main {
-  --bg-clr: #272b30;
-  --bg-header-clr: #1c1e22;
-  --bg-body-clr: #3b3e44;
-  --text-primary-clr: #ffe300;
-  --text-clr: #f7f8f8;
-  --disabled-bg-clr: #2d3136;
-  --disabled-txt-clr: gray;
-  --btn-hover-clr: #202327;
-  --details-bg-clr: #6c6f79;
-  --details-header-clr: #45484d;
-}
 
 .main {
   width: 100%;

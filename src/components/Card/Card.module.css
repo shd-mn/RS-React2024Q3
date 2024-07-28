@@ -19,7 +19,9 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background: var(--bg-body-clr);
-  p {
+  li {
+    display: flex;
+    gap: 1rem;
     margin-bottom: 1rem;
     color: var(--text-primary-clr);
     span {
