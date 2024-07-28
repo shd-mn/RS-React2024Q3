@@ -6,7 +6,7 @@ type ThemeProviderProps = {
 };
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useLocalStorage('theme');
+  const [theme, setTheme] = useLocalStorage('theme', 'dark');
 
   const value = {
     theme,

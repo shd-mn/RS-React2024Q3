@@ -1,8 +1,8 @@
-import { createContext, Dispatch, SetStateAction, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 type ThemeContextType = {
   theme: string;
-  setTheme: Dispatch<SetStateAction<string>>;
+  setTheme: (value: string) => void;
 };
 
 const defaultContextValue = {

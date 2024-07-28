@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import styles from './SearchForm.module.css';
 
 function SearchForm() {
-  const [query, setQuery] = useLocalStorage('searchQuery');
+  const [query, setQuery] = useLocalStorage('searchQuery', '');
   const [value, setValue] = useState(query);
   const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
