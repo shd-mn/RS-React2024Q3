@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { createPageNums } from '../../utils/createPageNums';
 
 describe('createPageNums', () => {

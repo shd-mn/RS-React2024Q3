@@ -1,7 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import PageBtn from '../../components/Pagination/PageBtn';
-import { vi } from 'vitest';
 
 describe('PageBtn Component', () => {
   it('should display text correctly', () => {

@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 import { findSelectedPerson } from '../../utils/findSelectedPerson';
 import { mockPeople } from '../mocks/mockData';
 
