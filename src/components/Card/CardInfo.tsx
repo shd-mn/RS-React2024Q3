@@ -5,10 +5,10 @@ interface PropTypes {
 
 function CardInfo({ infoText, info }: PropTypes) {
   return (
-    <p>
-      <span>{infoText}</span>
-      {info}
-    </p>
+    <li>
+      <h5>{infoText}</h5>
+      <p>{info}</p>
+    </li>
   );
 }
 

@@ -9,7 +9,7 @@ function Details() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const detailsParam = searchParams.get('details')!;
+  const detailsParam = searchParams.get('details') || '';
 
   const { data, error, isFetching } = useGetCharacterQuery({ id: detailsParam });
 
