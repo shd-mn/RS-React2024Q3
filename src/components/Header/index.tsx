@@ -1,4 +1,3 @@
-import ErrorProneComponent from '../ErrorBoundary/ErrorProneComponent';
 import SimulateError from '../ErrorBoundary/SimulateError';
 import SearchForm from '../Search/SearchForm';
 import logo from '/logo.webp';
@@ -8,6 +7,7 @@ import { useThemeContext } from '../../context/ThemeContext';
 
 function Header() {
   const { theme } = useThemeContext();
+
   return (
     <header className={styles.header} data-theme={theme}>
       <div className="container">
@@ -18,9 +18,7 @@ function Header() {
           <SearchForm />
           <div className={styles['header-action']}>
             <Theme />
-            <SimulateError>
-              <ErrorProneComponent />
-            </SimulateError>
+            <SimulateError />
           </div>
         </div>
       </div>
