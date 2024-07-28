@@ -5,4 +5,7 @@
   color: var(--text-clr);
   background: var(--error-btn-clr);
   margin: auto;
+  &:hover {
+    background: var(--btn-hover-clr);
+  }
 }

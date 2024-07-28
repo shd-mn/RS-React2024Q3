@@ -35,12 +35,18 @@
   color: var(--text-clr);
   background: var(--bg-body-clr);
   border-radius: 5px;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 .link {
   padding: 5px;
   border-radius: 5px;
   color: var(--text-clr);
   background: var(--text-primary-clr);
+  &:hover {
+    opacity: 0.8;
+  }
 }
 .size {
   transform: scale(1.02);

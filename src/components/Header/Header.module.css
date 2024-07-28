@@ -1,12 +1,12 @@
 .header[data-theme='light'] {
-  --bg-clr: #f2f2f2;
-  --bg-header-clr: #7e7e7e;
-  --bg-body-clr: #b9b9b9;
+  --bg-clr: #7bcfff;
+  --bg-header-clr: #188a9e;
+  --bg-body-clr: #147b8d;
   --text-primary-clr: #ffe732;
-  --text-clr: #424242;
-  --btn-hover-clr: #a5a5a5;
-  --input-clr: #d6d6d6;
-  --error-btn-clr: #c5c5c5;
+  --text-clr: #ffffff;
+  --btn-hover-clr: #126c7c;
+  --input-clr: #e2e2e2;
+  --error-btn-clr: #147b8d;
 }
 
 .header[data-theme='dark'] {

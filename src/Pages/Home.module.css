@@ -1,14 +1,14 @@
 .main[data-theme='light'] {
-  --bg-clr: #d8d8d8;
-  --bg-header-clr: #7e7e7e;
-  --bg-body-clr: #b1b1b1;
-  --text-primary-clr: #ffe732;
-  --text-clr: #424242;
-  --disabled-bg-clr: #dfdfdf;
-  --disabled-txt-clr: #ffffff;
-  --btn-hover-clr: #585858;
-  --details-bg-clr: #999999;
-  --details-header-clr: #696969;
+  --bg-clr: #dbecff;
+  --bg-header-clr: #288ea0;
+  --bg-body-clr: #34cee9;
+  --text-primary-clr: #ffffff;
+  --text-clr: #362d81;
+  --disabled-bg-clr: #95caf3;
+  --disabled-txt-clr: #dfdfdf;
+  --btn-hover-clr: #356fa7;
+  --details-bg-clr: #1eb5cf;
+  --details-header-clr: #0f7183;
 }
 
 .main[data-theme='dark'] {
