@@ -1,0 +1,11 @@
+.error-btn {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 1rem;
+  color: var(--text-clr);
+  background: var(--error-btn-clr);
+  margin: auto;
+  &:hover {
+    background: var(--btn-hover-clr);
+  }
+}
