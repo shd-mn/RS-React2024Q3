@@ -9,6 +9,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
     'plugin:prettier/recommended',
+    'next/core-web-vitals',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -20,7 +21,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['react', '@typescript-eslint', 'react-compiler', 'react-refresh'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'react-compiler', 'react-refresh'],
   settings: {
     react: {
       version: 'detect',
