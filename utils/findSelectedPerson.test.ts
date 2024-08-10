@@ -1,5 +1,5 @@
-import { findSelectedPerson } from '../../utils/findSelectedPerson';
-import { mockPeople } from '../mocks/mockData';
+import { mockPeople } from '../__test__/mocks/mockData';
+import { findSelectedPerson } from './findSelectedPerson';
 
 describe('findSelectedPerson', () => {
   it('should return true if the person is found in the list', () => {

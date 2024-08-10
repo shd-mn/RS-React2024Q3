@@ -1,4 +1,4 @@
-import { findId } from '../../utils/findId';
+import { findId } from './findId';
 
 describe('findId function', () => {
   it('should return the ID from a URL with an ID at the end', () => {
