@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
-import SimulateError from '../../components/ErrorBoundary/SimulateError';
+import SimulateError from './SimulateError';
 
 describe('SimulateError Component', () => {
   it('should render the button', () => {

@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import SimulateError from '../ErrorBoundary/SimulateError';
-import SearchForm from '../Search/SearchForm';
-import logo from '/logo.webp';
-import styles from './Header.module.css';
-import Theme from '../UI/Theme';
 import { useThemeContext } from '../../context/ThemeContext';
+import SearchForm from '../Search/SearchForm';
+import logo from '/public/logo.webp';
+import Theme from '../UI/Theme';
+import styles from './Header.module.css';
 
 function Header() {
   const { theme } = useThemeContext();
@@ -13,7 +14,7 @@ function Header() {
       <div className="container">
         <div className={styles.hero}>
           <div className={styles['img-box']}>
-            <img className={styles.img} src={logo} alt="Star Wars Logo" />
+            <Image className={styles.img} src={logo} alt="Star Wars Logo" width={400} priority />
           </div>
           <SearchForm />
           <div className={styles['header-action']}>

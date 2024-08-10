@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CardInfo from '../../components/Card/CardInfo';
+import CardInfo from './CardInfo';
 
 describe('CardInfo Component', () => {
   it('should display the infoText and info correctly', () => {

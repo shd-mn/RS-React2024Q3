@@ -1,22 +1,22 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import { getQueryParam } from '../../utils/getQueryParam';
+import { useGetCharacterQuery } from '../../redux/services/swapiApi';
 import Loading from '../Loading';
 import CardInfo from '../Card/CardInfo';
-
 import styles from './Details.module.css';
-import { useGetCharacterQuery } from '../../redux/services/swapiApi';
 
 function Details() {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-
-  const detailsParam = searchParams.get('details') || '';
+  const router = useRouter();
+  const { details } = router.query;
+  const detailsParam = getQueryParam(details);
+  const path = router.asPath;
 
   const { data, error, isFetching } = useGetCharacterQuery({ id: detailsParam });
 
   const handleCloseDetails = () => {
-    const search = searchParams.get('search');
-    const page = searchParams.get('page');
-    navigate(`?search=${search}&page=${page}`);
+    const detailsQuery = `details=${detailsParam}`;
+    const pathWithoutDetail = path?.replace(new RegExp(`[?&]${detailsQuery}`), '') || '';
+    router.push(pathWithoutDetail);
   };
 
   if (isFetching) {

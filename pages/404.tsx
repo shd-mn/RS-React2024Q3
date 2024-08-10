@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function NotFound() {
   return (
@@ -13,7 +13,7 @@ function NotFound() {
       }}
     >
       <h3>404 Page Not Found</h3>
-      <Link to="/">Back to Home </Link>
+      <Link href="/">Back to Home </Link>
     </div>
   );
 }

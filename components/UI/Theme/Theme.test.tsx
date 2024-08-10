@@ -1,8 +1,7 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
-
-import Theme from '../../components/UI/Theme';
-import { customRender } from '../test-utils';
+import Theme from '.';
+import { customRender } from '../../../__test__/test-utils';
 
 vi.mock('/icons/moon-solid.svg', () => ({ default: 'moon-solid.svg' }));
 vi.mock('/icons/sun-solid.svg', () => ({ default: 'sun-solid.svg' }));

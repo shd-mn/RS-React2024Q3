@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ErrorBoundary from '../../components/ErrorBoundary';
+import ErrorBoundary from '.';
 
 const ProblemChild = () => {
   throw new Error('Error thrown from problem child');
