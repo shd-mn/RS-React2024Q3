@@ -5,7 +5,7 @@ import { swapiApi } from './services/swapiApi';
 import mainReducer from './features/mainSlice';
 import pageReducer from './features/pageSlice';
 
-const makeStore = () =>
+export const makeStore = () =>
   configureStore({
     reducer: {
       [swapiApi.reducerPath]: swapiApi.reducer,
