@@ -11,7 +11,7 @@ vi.mock('react-redux', async (importOriginal) => {
   };
 });
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
 }));
 

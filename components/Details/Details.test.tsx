@@ -3,32 +3,25 @@ import '@testing-library/jest-dom/vitest';
 import { customRender } from '../../__test__/test-utils';
 import Details from '.';
 
-type mockRoutertype = {
-  query: {
-    details: string;
-  };
-  asPath: string;
-  push: (path: string, factory?: (importOriginal: () => unknown) => unknown) => void;
-};
-
-let mockRouter: mockRoutertype;
 const mockPush = vi.fn();
 
-beforeEach(() => {
-  mockRouter = {
-    query: {
-      details: '1',
-    },
-    asPath: '/people/1',
-    push: mockPush,
-  };
-});
+let mockSearchParams = new URLSearchParams('page=1&details=1');
 
-vi.mock('next/router', () => ({
-  useRouter: () => mockRouter,
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+  useSearchParams: () => ({
+    get: (key: string) => {
+      return mockSearchParams.get(key);
+    },
+  }),
 }));
 
 describe('Details Component', () => {
+  beforeEach(() => {
+    mockSearchParams = new URLSearchParams('page=1&details=1');
+  });
   afterAll(() => {
     vi.clearAllMocks();
   });
@@ -56,7 +49,7 @@ describe('Details Component', () => {
   });
 
   it('displays error message on failed fetch', async () => {
-    mockRouter.query.details = 'null';
+    mockSearchParams.set('details', 'null');
     customRender(<Details />);
 
     expect(await screen.findByText(/an error has occurred:/i)).toBeInTheDocument();
@@ -71,7 +64,8 @@ describe('Details Component', () => {
 
     const closeButton = screen.getByRole('button', { name: /close/i });
     await user.click(closeButton);
+    console.log(mockPush);
 
-    expect(mockPush).toHaveBeenCalledWith('/people/1');
+    expect(mockPush).toHaveBeenCalledWith('/?page=1');
   });
 });

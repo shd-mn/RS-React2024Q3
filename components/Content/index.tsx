@@ -1,7 +1,7 @@
 import Card from '../Card';
 import Pagination from '../Pagination';
 import styles from './Content.module.css';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import type { PeopleType } from '../../types/peopleType';
 import Details from '../Details';
 import Flyout from '../UI/Flyout';
@@ -11,8 +11,8 @@ type PropTyes = {
 };
 
 function Content({ data }: PropTyes) {
-  const router = useRouter();
-  const { details } = router.query;
+  const searchParams = useSearchParams();
+  const details = searchParams.get('details');
 
   return (
     <div className={styles.container}>

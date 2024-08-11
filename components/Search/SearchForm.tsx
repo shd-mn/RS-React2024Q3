@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import styles from './SearchForm.module.css';
@@ -19,12 +19,9 @@ function SearchForm() {
     dispatch(setSearch(name));
     dispatch(setCurrentPage(1));
     if (name) {
-      router.push({
-        pathname: '/search',
-        query: { name, page: 1 },
-      });
+      router.push(`/?name=${name}&page=1`);
     } else {
-      router.push(`/people/1`);
+      router.push(`/?page=1`);
     }
   };
 

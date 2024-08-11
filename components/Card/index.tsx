@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { MouseEvent } from 'react';
 import { findId } from '../../utils/findId';
@@ -19,29 +19,26 @@ interface PropTyes {
 }
 
 function Card({ person }: PropTyes) {
-  const { selectedPeople } = useSelector((state: RootState) => state.main);
+  const { name: search, selectedPeople } = useSelector((state: RootState) => state.main);
   const dispatch = useDispatch();
   const router = useRouter();
-  const { details } = router.query;
-  const path = router.asPath;
+
+  const searchParams = useSearchParams();
+  const details = searchParams.get('details');
+  const page = searchParams.get('page');
+  const nameParam = searchParams.get('name');
+
   const { name, birth_year, gender, url } = person;
   const detailsParam = getQueryParam(details);
   const detail = findId(url);
   const isSelected = findSelectedPerson(selectedPeople, name);
 
   const toggleDetails = () => {
-    const isSearchPath = path.includes('/search');
-    const detailsQuery = `details=${detail}`;
-    const querySeparator = isSearchPath ? '&' : '?';
-
+    const newPath = nameParam ? `/?name=${search}&page=${page}` : `/?page=${page}`;
     if (detailsParam === detail) {
-      const pathWithoutDetail = path.replace(new RegExp(`[?&]${detailsQuery}`), '');
-      router.push(pathWithoutDetail);
+      router.push(`${newPath}`);
     } else {
-      const newPath = path.includes('details=')
-        ? path.replace(/details=[^&]*/, detailsQuery)
-        : `${path}${querySeparator}${detailsQuery}`;
-      router.push(newPath);
+      router.push(`${newPath}&details=${detail}`);
     }
   };
 

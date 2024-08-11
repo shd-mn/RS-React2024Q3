@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import PageBtn from './PageBtn';
 import { RootState } from '../../redux/store';
@@ -9,18 +9,14 @@ function Pagination() {
   const { currentPage, pages } = useSelector((state: RootState) => state.page);
   const dispatch = useDispatch();
   const router = useRouter();
-  const { name } = router.query;
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name');
 
   const handlePage = (num: number) => {
     if (name) {
-      router.push({
-        pathname: '/search',
-        query: { name, page: `${num}` },
-      });
+      router.push(`/?name=${name}&page=${num}`);
     } else {
-      router.push({
-        pathname: `/people/${num}`,
-      });
+      router.push(`/?page=${num}`);
     }
     dispatch(setCurrentPage(num));
   };

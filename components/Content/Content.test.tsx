@@ -5,9 +5,18 @@ import Content from '.';
 import { vi } from 'vitest';
 import { mockPeople } from '../../__test__/mocks/mockData';
 
-vi.mock('next/router', () => ({
+const mockPush = vi.fn();
+
+const mockSearchParams = new URLSearchParams('page=1&details=1');
+
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
-    query: { details: '1' },
+    push: mockPush,
+  }),
+  useSearchParams: () => ({
+    get: (key: string) => {
+      return mockSearchParams.get(key);
+    },
   }),
 }));
 
