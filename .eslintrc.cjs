@@ -10,7 +10,7 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '!**/.server', '!**/.client'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -24,6 +24,14 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
+    },
+    formComponents: ['Form'],
+    linkComponents: [
+      { name: 'Link', linkAttribute: 'to' },
+      { name: 'NavLink', linkAttribute: 'to' },
+    ],
+    'import/resolver': {
+      typescript: {},
     },
   },
   rules: {

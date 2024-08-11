@@ -12,6 +12,9 @@ coverage
 dist
 dist-ssr
 *.local
+.next
+next-env.d.ts
+/.cache
 
 # Editor directories and files
 .vscode/*
