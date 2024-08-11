@@ -1,14 +1,44 @@
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { wrapper } from '@/redux/store';
+import { wrapper } from '../redux/store';
 import Head from 'next/head';
 import './globals.css';
-import ErrorBoundary from '@/components/ErrorBoundary';
-import ThemeProvider from '@/context/ThemeProvider';
-import Layout from '@/components/Layout';
+import ErrorBoundary from '../components/ErrorBoundary';
+import ThemeProvider from '../context/ThemeProvider';
+import Layout from '../components/Layout';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Loading from '../components/Loading';
 
 export default function App({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setIsLoading(true);
+    };
+
+    const handleRouteChangeComplete = () => {
+      setIsLoading(false);
+    };
+
+    const handleRouteChangeError = () => {
+      setIsLoading(false);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    router.events.on('routeChangeError', handleRouteChangeError);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      router.events.off('routeChangeError', handleRouteChangeError);
+    };
+  }, [router.events]);
+
   return (
     <>
       <Head>
@@ -17,15 +47,13 @@ export default function App({ Component, ...rest }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Provider store={store}>
-        <ThemeProvider>
-          <ErrorBoundary fallback="Something went wrong!">
-            <Layout>
-              <Component {...props.pageProps} />
-            </Layout>
-          </ErrorBoundary>
-        </ThemeProvider>
-      </Provider>
+      <ErrorBoundary fallback="Something went wrong!">
+        <Provider store={store}>
+          <ThemeProvider>
+            <Layout>{isLoading ? <Loading /> : <Component {...props.pageProps} />}</Layout>
+          </ThemeProvider>
+        </Provider>
+      </ErrorBoundary>
     </>
   );
 }

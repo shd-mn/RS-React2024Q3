@@ -23,9 +23,7 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "types": ["vitest/globals", "vitest/jsdom", "@testing-library/jest-dom"]
   },
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts"],
   "exclude": ["node_modules"]
