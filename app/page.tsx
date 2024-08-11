@@ -1,6 +1,6 @@
 import HomeClientWrapper from '../container/Home';
 
-export async function fetchPeopleData(name: string, page: string) {
+async function fetchPeopleData(name: string, page: string) {
   try {
     const res = await fetch(`https://swapi.dev/api/people/?search=${name}&page=${page}`, { cache: 'no-cache' });
 
