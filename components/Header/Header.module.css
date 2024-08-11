@@ -1,0 +1,59 @@
+.header[data-theme='light'] {
+  --bg-clr: #7bcfff;
+  --bg-header-clr: #188a9e;
+  --bg-body-clr: #147b8d;
+  --text-primary-clr: #ffe732;
+  --text-clr: #ffffff;
+  --btn-hover-clr: #126c7c;
+  --input-clr: #e2e2e2;
+  --error-btn-clr: #147b8d;
+}
+
+.header[data-theme='dark'] {
+  --bg-clr: #272b30;
+  --bg-header-clr: #1c1e22;
+  --bg-body-clr: #3b3e44;
+  --text-primary-clr: #ffe300;
+  --text-clr: #f7f8f8;
+  --btn-hover-clr: #494949;
+  --input-clr: #d6d6d6;
+  --error-btn-clr: #3b3e44;
+}
+
+.header {
+  width: 100%;
+  padding: 4rem 0;
+  background: var(--bg-header-clr);
+  position: relative;
+}
+
+.header-action {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.img-box {
+  display: flex;
+  height: 12rem;
+  margin-bottom: 2rem;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-style: none;
+}

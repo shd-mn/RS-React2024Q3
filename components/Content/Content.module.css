@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 110rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  min-height: 60rem;
+  margin-bottom: 1rem;
+}
+
+.cards {
+  display: grid;
+  width: 100%;
+  flex: 4;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+@media screen and (max-width: 62em) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 59em) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 46em) {
+  .content {
+    flex-direction: column;
+  }
+}
