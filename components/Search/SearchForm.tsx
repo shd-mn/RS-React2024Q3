@@ -1,31 +1,35 @@
-import { FormEvent, useEffect, useState } from 'react';
-
+import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import { setSearch } from '../../redux/features/mainSlice';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import styles from './SearchForm.module.css';
+import { setCurrentPage } from '../../redux/features/pageSlice';
+import { setSearch } from '../../redux/features/mainSlice';
 
 function SearchForm() {
   const [query, setQuery] = useLocalStorage('searchQuery', '');
   const [value, setValue] = useState(query);
+  const router = useRouter();
   const dispatch = useDispatch();
-  const [, setSearchParams] = useSearchParams();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const name = value.trim().toLowerCase();
     setQuery(name);
-    setSearchParams({ search: name, page: '1' });
     dispatch(setSearch(name));
+    dispatch(setCurrentPage(1));
+    if (name) {
+      router.push({
+        pathname: '/search',
+        query: { name, page: 1 },
+      });
+    } else {
+      router.push(`/people/1`);
+    }
   };
 
-  useEffect(() => {
-    dispatch(setSearch(query));
-  }, [dispatch, query]);
-
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit} role="form">
       <input
         type="text"
         className={styles.input}
