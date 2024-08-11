@@ -1,12 +1,12 @@
 import { ThemeContext } from './ThemeContext';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { useState } from 'react';
 
 type ThemeProviderProps = {
   children: React.ReactNode;
 };
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useLocalStorage('theme', 'dark');
+  const [theme, setTheme] = useState('dark');
 
   const value = {
     theme,
