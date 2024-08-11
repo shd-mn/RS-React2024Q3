@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { customRender } from '../__test__/test-utils';
-import NotFound from './404';
+import NotFound from './not-found';
 
 describe('NotFound Component', () => {
   it('displays the 404 message and back to home link', () => {

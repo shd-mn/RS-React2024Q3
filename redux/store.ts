@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { swapiApi } from './services/swapiApi';
 import mainReducer from './features/mainSlice';
@@ -17,7 +16,6 @@ export const makeStore = () =>
 
 setupListeners(makeStore().dispatch);
 
-export type RootState = ReturnType<ReturnType<typeof makeStore>['getState']>;
-export type AppDispatch = ReturnType<typeof makeStore>['dispatch'];
-
-export const wrapper = createWrapper(makeStore);
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
