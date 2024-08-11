@@ -46,6 +46,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
 };

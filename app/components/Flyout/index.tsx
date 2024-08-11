@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { unselectPeople } from '../../../redux/features/mainSlice';
+import { unselectPeople } from '~/redux/features/mainSlice';
 import { CSVLink } from 'react-csv';
-import { csvHeaders } from '../../../constants';
-import type { RootState } from '../../../redux/store';
+import { csvHeaders } from '~/constants';
+import type { RootState } from '~/redux/store';
 import styles from './Flyout.module.css';
 
 function Flyout() {

@@ -1,22 +1,25 @@
 import { FormEvent, useEffect, useState } from 'react';
-
+import { Form, useSearchParams } from '@remix-run/react';
 import { useDispatch } from 'react-redux';
-import { setSearch } from '../../redux/features/mainSlice';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import { useSearchParams } from 'react-router-dom';
+import { setSearch } from '~/redux/features/mainSlice';
+import useLocalStorage from '~/hooks/useLocalStorage';
+// import { useSearchParams } from 'react-router-dom';
 import styles from './SearchForm.module.css';
 
 function SearchForm() {
   const [query, setQuery] = useLocalStorage('searchQuery', '');
   const [value, setValue] = useState(query);
   const dispatch = useDispatch();
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const details = searchParams.get('details');
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const name = value.trim().toLowerCase();
     setQuery(name);
-    setSearchParams({ search: name, page: '1' });
+    // navigate(`/?name=${name}page='1'`);
+    setSearchParams({ page: '1', query: name, ...(details && { details }) });
+    // setSearchParams({ search: name, page: '1' });
     dispatch(setSearch(name));
   };
 
@@ -25,7 +28,7 @@ function SearchForm() {
   }, [dispatch, query]);
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <Form noValidate method="get" className={styles.form} onSubmit={onSubmit}>
       <input
         type="text"
         className={styles.input}
@@ -36,7 +39,7 @@ function SearchForm() {
       <button type="submit" className={styles.btn}>
         Search
       </button>
-    </form>
+    </Form>
   );
 }
 
