@@ -1,26 +1,29 @@
-import styles from './Pagination.module.css';
-import PageBtn from './PageBtn';
-import { useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import PageBtn from './PageBtn';
 import { RootState } from '../../redux/store';
-import { useEffect } from 'react';
 import { setCurrentPage } from '../../redux/features/pageSlice';
+import styles from './Pagination.module.css';
 
 function Pagination() {
-  const { name } = useSelector((state: RootState) => state.main);
   const { currentPage, pages } = useSelector((state: RootState) => state.page);
   const dispatch = useDispatch();
-
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const { name } = router.query;
 
   const handlePage = (num: number) => {
-    setSearchParams({ search: name, page: `${num}` });
+    if (name) {
+      router.push({
+        pathname: '/search',
+        query: { name, page: `${num}` },
+      });
+    } else {
+      router.push({
+        pathname: `/people/${num}`,
+      });
+    }
+    dispatch(setCurrentPage(num));
   };
-
-  useEffect(() => {
-    const page = searchParams.get('page') ?? 1;
-    dispatch(setCurrentPage(+page));
-  }, [searchParams, dispatch]);
 
   return (
     <div className={styles.pagination}>

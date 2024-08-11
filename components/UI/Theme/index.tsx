@@ -11,7 +11,7 @@ function Theme() {
   };
 
   return (
-    <button type="button" data-testid="theme-btn" onClick={toggleTheme}>
+    <button type="button" data-testid="theme-btn" style={{ background: 'transparent' }} onClick={toggleTheme}>
       {theme === 'light' ? (
         <Image src={moon} alt="select" width={24} height={24} />
       ) : (

@@ -14,7 +14,7 @@ function Header() {
       <div className="container">
         <div className={styles.hero}>
           <div className={styles['img-box']}>
-            <Image className={styles.img} src={logo} alt="Star Wars Logo" width={400} priority />
+            <Image className={styles.img} src={logo} alt="Star Wars Logo" width={800} height={400} priority />
           </div>
           <SearchForm />
           <div className={styles['header-action']}>

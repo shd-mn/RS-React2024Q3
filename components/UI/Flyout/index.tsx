@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { unselectPeople } from '../../../redux/features/mainSlice';
 import { CSVLink } from 'react-csv';
 import { csvHeaders } from '../../../constants';
@@ -18,6 +17,8 @@ function Flyout() {
     dispatch(unselectPeople());
   };
 
+  const csvData = useMemo(() => selectedPeople, [selectedPeople]);
+
   useEffect(() => {
     setSize(true);
     setTimeout(() => {
@@ -28,13 +29,14 @@ function Flyout() {
   return (
     <div ref={myRef} className={`${styles.flyout} ${selectedPeople.length > 0 && styles.show} ${size && styles.size}`}>
       <h4>
-        {count} {count == 1 ? 'item is' : 'items are'} selected
+        {count} {count === 1 ? 'item is' : 'items are'} selected
       </h4>
       <div className={styles['btn-group']}>
-        <CSVLink className={styles.link} filename={`${count}_people.csv`} headers={csvHeaders} data={selectedPeople}>
-          Download
-        </CSVLink>
-
+        {selectedPeople.length > 0 && (
+          <CSVLink className={styles.link} filename={`${count}_people.csv`} headers={csvHeaders} data={csvData}>
+            Download
+          </CSVLink>
+        )}
         <button className={styles.btn} type="button" onClick={handleUnselect}>
           Unselect All
         </button>
