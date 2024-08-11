@@ -1,5 +1,5 @@
-import { useThemeContext } from '../context/ThemeContext';
-import Header from '../components/Header';
+import { useThemeContext } from '../src/context/ThemeContext';
+import Header from './components/Header';
 import Content from '../components/Content';
 import styles from './Home.module.css';
 

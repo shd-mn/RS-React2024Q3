@@ -1,5 +1,5 @@
 import { ThemeContext } from './ThemeContext';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '../../app/hooks/useLocalStorage';
 
 type ThemeProviderProps = {
   children: React.ReactNode;

@@ -1,9 +1,9 @@
 import SimulateError from '../ErrorBoundary/SimulateError';
-import SearchForm from '../Search/SearchForm';
+import SearchForm from '../../../src/components/Search/SearchForm';
 import logo from '/logo.webp';
 import styles from './Header.module.css';
-import Theme from '../UI/Theme';
-import { useThemeContext } from '../../context/ThemeContext';
+import Theme from '../Theme';
+import { useThemeContext } from '../../../src/context/ThemeContext';
 
 function Header() {
   const { theme } = useThemeContext();

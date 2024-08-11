@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
-import ThemeProvider from '../context/ThemeProvider';
+import ThemeProvider from '../../src/context/ThemeProvider';
 import { createMemoryRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
 interface CustomRenderOptions {

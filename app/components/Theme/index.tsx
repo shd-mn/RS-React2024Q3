@@ -1,4 +1,4 @@
-import { useThemeContext } from '../../../context/ThemeContext';
+import { useThemeContext } from '~/context/ThemeContext';
 import moon from '/icons/moon-solid.svg';
 import sun from '/icons/sun-solid.svg';
 

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseUrl } from '../../constants';
-import type { PeopleType, PersonType } from '../../types/peopleType';
+import { baseUrl } from '../../../app/constants';
+import { PeopleType, PersonType } from '~/types/peopleType';
 
 export const swapiApi = createApi({
   reducerPath: 'swapiApi',

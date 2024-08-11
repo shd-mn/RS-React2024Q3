@@ -1,5 +1,5 @@
 import { Outlet, useSearchParams } from 'react-router-dom';
-import Card from '../Card';
+import Card from '../../../app/components/Card';
 import Loading from '../Loading';
 
 import { useGetCharactersQuery } from '../../redux/services/swapiApi';

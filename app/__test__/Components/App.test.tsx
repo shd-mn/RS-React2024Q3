@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from '../../App';
+import App from '../../../app/App';
 
 describe('App Component', () => {
   it('renders the Header component at the root path', () => {

@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loading from '../Loading';
-import CardInfo from '../Card/CardInfo';
+import CardInfo from '../../../app/components/Card/CardInfo';
 
 import styles from './Details.module.css';
 import { useGetCharacterQuery } from '../../redux/services/swapiApi';

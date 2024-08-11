@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { PersonType } from '../../types/peopleType';
+import { PersonType } from '~/types/peopleType';
 
 export interface MainState {
   name: string;

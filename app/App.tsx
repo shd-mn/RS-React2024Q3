@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from '../src/redux/store';
+import { store } from './redux/store';
 import ThemeProvider from '../src/context/ThemeProvider';
-import Home from '../src/Pages/Home';
-import NotFound from '../src/Pages/NotFound';
+import Home from './Home';
+import NotFound from './NotFound';
 import Details from '../src/components/Details';
-import ErrorLayout from '../src/components/ErrorBoundary/ErrorLayout';
+import ErrorLayout from './components/ErrorBoundary/ErrorLayout';
 
 const router = createBrowserRouter([
   {

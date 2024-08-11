@@ -1,4 +1,4 @@
-import { mockPeople, mockPerson } from '../mocks/mockData';
+import { mockPeople, mockPerson } from '../../../app/__test__/mocks/mockData';
 import reducer, { setSearch, setPeople, selectPeople, unselectPeople, MainState } from '../../redux/features/mainSlice';
 
 describe('mainSlice', () => {

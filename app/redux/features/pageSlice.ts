@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createPageNums } from '../../utils/createPageNums';
+import { createPageNums } from '~/utils/createPageNums';
 
 export interface PageState {
   currentPage: number;
