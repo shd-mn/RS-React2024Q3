@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import SimulateError from '../ErrorBoundary/SimulateError';
 import { useThemeContext } from '../../context/ThemeContext';

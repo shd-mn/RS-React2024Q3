@@ -2,12 +2,11 @@ import { screen } from '@testing-library/react';
 import Header from './';
 import { customRender } from '../../__test__/test-utils';
 
-vi.mock('next/router', () => ({
+const mockPush = vi.fn();
+
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
-    query: {
-      details: '1',
-    },
-    asPath: '/people/1',
+    push: mockPush,
   }),
 }));
 

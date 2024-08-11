@@ -1,3 +1,4 @@
+'use client';
 import { ThemeContext } from './ThemeContext';
 import { useState } from 'react';
 

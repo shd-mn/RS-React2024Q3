@@ -1,6 +1,7 @@
-import styles from './Loading.module.css';
+'use client';
+import styles from './Spinner.module.css';
 
-function Loading() {
+function Spinner() {
   return (
     <div className={styles.loading} data-testid="loader">
       <div className={styles.container}>
@@ -10,4 +11,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default Spinner;
