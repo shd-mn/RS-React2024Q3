@@ -1,0 +1,30 @@
+.header {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  padding: 0 3.2rem;
+  color: white;
+  background: #1251da;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav a {
+  transition: all 0.2s;
+  padding: 1rem;
+  &:hover {
+    color: #aca8f1;
+  }
+}
