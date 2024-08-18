@@ -1,0 +1,76 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.wrapper label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.wrapper input {
+  display: block;
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 5px;
+  line-height: 1.5rem;
+  outline: none;
+  color: #1f2937;
+  background-color: white;
+  box-shadow: 0 0 0 1.2px #d1d5db;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #4f46e5;
+  }
+}
+
+.error-message {
+  margin-top: 3px;
+  font-size: 1.4rem;
+  color: red;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.radio-wrapper {
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.radio-wrapper label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1.2px #d1d5db;
+  font-size: 1.4rem;
+}
+
+.radio-wrapper span {
+  grid-column: 1/-1;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1.2px #d1d5db;
+}
